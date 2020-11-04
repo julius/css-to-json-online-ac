@@ -11,27 +11,15 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <textarea id="sourceCSS" class="form-control" style="height: 80vh" onkeyup="cssToJson()">
-@media (max-width: 800px) {
-    /* This is a comment */
-    #main #comments {
-        margin: 0px;
-        width: auto;
-        background: red;
-    }
-    #main #buttons {
-        padding: 5px 10px;
-        color: blue;
-    }
+.app {
+    color: white;
+    background-color: #F3F3F4;
 }
 
-/* This is another comment */
-#main #content {
-    margin: 0 7.6%;
-    width: auto;
-}
-#nav-below {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 1.625em;
+.app > div:first-of-type > div.container > div.row.title {
+    position: absolute;
+    transform: translate(150px, -215%);
+    color: white;
 }
                     </textarea>
                 </div>
@@ -52,13 +40,13 @@
                 var jsonAC = [];
                 for (var className in json.children) {
                     jsonAC.push({
-                        class: className,
+                        class: className.startsWith(".") ? className.substr(0) : className,
                         style: json.children[className].attributes,
                     });
                 }
 
                 document.getElementById('destinationJSON').innerHTML =
-                    '<strong>JSON</strong><br/><pre>' + JSON.stringify(jsonAC, undefined, 2) + '</pre>';
+                    '<strong>JSON</strong><br/><pre>' + JSON.stringify(jsonAC, undefined, 4) + '</pre>';
             }
 
             cssToJson();
