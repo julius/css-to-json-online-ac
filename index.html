@@ -40,7 +40,7 @@
                 var jsonAC = [];
                 for (var className in json.children) {
                     jsonAC.push({
-                        class: className.startsWith(".") ? className.substr(0) : className,
+                        class: className.startsWith(".") ? className.substr(1) : className,
                         style: json.children[className].attributes,
                     });
                 }
