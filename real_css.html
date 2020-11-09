@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS to JSON</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <textarea id="sourceCSS" class="form-control" style="height: 80vh" onkeyup="cssToJson()">
+.app {
+    color: white;
+    background-color: #F3F3F4;
+}
+
+.app > div:first-of-type > div.container > div.row.title {
+    position: absolute;
+    transform: translate(150px, -215%);
+    color: white;
+}
+                    </textarea>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div id="destinationJSON"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this if you're supporting IE 7, 8 -->
+        <script type="text/javascript" src="json2.js"></script>
+        <script type="text/javascript" src="cssjson.js"></script>
+        <script type="text/javascript">
+            function cssToJson() {
+                var cssString = document.getElementById('sourceCSS').value;
+                var jsonAC = [{ placeHolder: 'CustomCSS', content: cssString }];
+                document.getElementById('destinationJSON').innerHTML =
+                    '<strong>JSON</strong><br/><pre>' + JSON.stringify(jsonAC, undefined, 4) + '</pre>';
+            }
+
+            cssToJson();
+        </script>
+    </body>
+</html>
