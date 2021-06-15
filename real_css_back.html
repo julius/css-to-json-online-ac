@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS to JSON</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        />
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <textarea
+                        id="sourceJSON"
+                        class="form-control"
+                        style="height: 80vh"
+                        onkeyup="jsonToCSS()"
+                    >
+[
+    {
+        "placeHolder": "CustomCSS",
+        "content": ".app {\n    color: white;\n    background-color: #F3F3F4;\n}\n\n.app > div:first-of-type > div.container > div.row.title {\n    position: absolute;\n    transform: translate(150px, -215%);\n    color: white;\n}\n                    "
+    }
+]
+                    </textarea>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div id="destinationCSS"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add this if you're supporting IE 7, 8 -->
+        <script type="text/javascript" src="json2.js"></script>
+        <script type="text/javascript" src="cssjson.js"></script>
+        <script type="text/javascript">
+            function jsonToCSS() {
+                var jsonString = document.getElementById('sourceJSON').value;
+                var cssString = JSON.parse(jsonString)[0].content;
+                document.getElementById('destinationCSS').innerHTML =
+                    '<strong>CSS</strong><br/><pre>' + cssString + '</pre>';
+            }
+
+            jsonToCSS();
+        </script>
+    </body>
+</html>
